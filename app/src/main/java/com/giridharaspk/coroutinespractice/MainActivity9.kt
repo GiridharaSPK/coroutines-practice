@@ -16,6 +16,7 @@ class MainActivity9 : AppCompatActivity() {
         //dispatcher - which thread to execute coroutine on
         //job - launch returns job obj
         //coroutine name - assign a name to it
+        myFun2()
     }
 
     fun myFun() = runBlocking {

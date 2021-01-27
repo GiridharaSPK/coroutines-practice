@@ -62,10 +62,13 @@ class MainActivity6 : AppCompatActivity() {
 
         GlobalScope.launch(Dispatchers.IO) {
             val time = measureTimeMillis {
-                val ans1 = async { networkCall1() }
-                val ans2 = async { networkCall2() }
-                Log.d(TAG, "ans1 = ${ans1.await()}")
-                Log.d(TAG, "ans2 = ${ans2.await()}")
+                val jobDeferred1: Deferred<String> = async {
+                    networkCall1()
+//                    "return string"
+                } //Deferred is subclass of job interface
+                val jobDeferred2 = async { networkCall2() }
+                Log.d(TAG, "ans1 = ${jobDeferred1.await()}")
+                Log.d(TAG, "ans2 = ${jobDeferred2.await()}")
             }
             Log.d(TAG, "time = $time") //executed in 2 sec
         }
